@@ -1,0 +1,169 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mod-kiwi</groupId>
+	<artifactId>mod-kiwi</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.4,)</versionRange>
+										<goals>
+											<goal>copy-dependencies</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<overwrite>true</overwrite>
+							<outputDirectory>/${user.home}/vert.x/mods/kiwi</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/classes</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${user.home}/vert.x/mods/kiwi/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<includeScope>runtime</includeScope>
+							<excludeScope>provided</excludeScope>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-primitives</groupId>
+			<artifactId>commons-primitives</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-platform</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-testframework</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-deps-groovy</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-deps-hazelcast</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-deps-jackson-mapper</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-deps-jackson-core</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>vertx.io</groupId>
+			<artifactId>vertx-deps-netty</artifactId>
+			<version>1.0.1.final</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+</project>
